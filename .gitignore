@@ -8,6 +8,10 @@
 # testing
 /coverage
 
+#key
+.env
+/proxyserver/config/serviceKey.js
+
 # production
 /build
 
