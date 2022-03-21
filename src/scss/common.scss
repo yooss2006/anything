@@ -2,11 +2,25 @@
 
 @import "reset";
 
-// $gray: #767676, #c4c4c4, #f2f2f2;
-// $green: #21bf48;
-$f7: "SpoqaHanSansNeo-Bold";
-$f5: "SpoqaHanSansNeo-Medium";
-$lrcont: 0;
+@font-face {
+  font-family: "LeeSeoyun";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2202-2@1.0/LeeSeoyun.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "SBAggroB";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/SBAggroB.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+$f7: "SBAggroB";
+$purple: #460373, #8149a6, #b796d9;
+$yellow: #f2c777, #f2e6d8;
 $imgUrl: "../assets/";
 
 @mixin line {
@@ -24,4 +38,9 @@ $imgUrl: "../assets/";
   display: none;
 }
 
-@import "background";
+.App {
+  position: relative;
+  font-family: "LeeSeoyun";
+}
+
+@import "background", "weather";

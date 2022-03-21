@@ -109,13 +109,65 @@ q:after {
   content: "";
 }
 
+@font-face {
+  font-family: "LeeSeoyun";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2202-2@1.0/LeeSeoyun.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "SBAggroB";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/SBAggroB.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
 .hide {
   display: none;
+}
+
+.App {
+  position: relative;
+  font-family: "LeeSeoyun";
 }
 
 .background {
   width: 100%;
   height: 100%;
+}
+
+.weather {
+  width: 30%;
+  min-width: 300px;
+  padding: 1em;
+  border-radius: 10px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  background-color: #f2e6d8;
+  color: #460373;
+}
+.weather h2 {
+  font-family: "SBAggroB";
+  font-size: 20px;
+  margin-bottom: 1em;
+}
+.weather .weatherContent {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: nowrap;
+}
+.weather .weatherContent .weatherCommon {
+  text-align: center;
+  flex-basis: 33.33%;
+  height: 6.25em;
+}
+.weather .temperatureAndWeather .icon {
+  width: 3.125em;
+  height: 3.125em;
+  margin-top: 1em;
 }
 
 /*# sourceMappingURL=common.css.map */

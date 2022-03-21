@@ -1,0 +1,35 @@
+.weather {
+  width: 30%;
+  min-width: 300px;
+  padding: 1em;
+  border-radius: 10px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  background-color: nth($yellow, 2);
+  color: nth($purple, 1);
+
+  h2 {
+    font-family: $f7;
+    font-size: 20px;
+    margin-bottom: 1em;
+  }
+  .weatherContent {
+    @include flex($a: center);
+    .weatherCommon {
+      text-align: center;
+      flex-basis: 33.33%;
+      height: 6.25em;
+    }
+  }
+
+  .temperatureAndWeather {
+    .icon {
+      width: 3.125em;
+      height: 3.125em;
+      margin-top: 1em;
+    }
+  }
+}

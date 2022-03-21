@@ -1,17 +1,30 @@
 const express = require("express");
 const cors = require("cors");
-const axdata = require("./axdata.js");
+const weatherResponse = require("./apiResponse/weatherResponse.js");
+const dustResponse = require("./apiResponse/dustResponse.js");
 const app = express();
 
 app.use(cors());
+
 app.get("/", async (req, res) => {
-  await axdata((error, data) => {
+  const 위경도 = req.query;
+  const weatherAndDustData = {};
+  await weatherResponse(위경도, (error, data) => {
     if (error) {
       res.send(error);
     } else {
-      res.send(data);
+      weatherAndDustData.weather = data;
     }
   });
+  await dustResponse((error, data) => {
+    if (error) {
+      res.send(error);
+    } else {
+      weatherAndDustData.dust = data;
+    }
+  });
+
+  res.send(weatherAndDustData);
 });
 
 app.listen(8000, () => {
