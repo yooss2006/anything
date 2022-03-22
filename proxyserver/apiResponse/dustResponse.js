@@ -16,6 +16,7 @@ const dustResponse = async (callback) => {
       },
     });
     const data = response.data.response.body;
+    console.dir(data);
     callback(undefined, { data: data });
   } catch (error) {
     console.log("error broke ou: ", error);

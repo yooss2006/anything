@@ -2,6 +2,7 @@
   width: 30%;
   min-width: 300px;
   padding: 1em;
+  border: 3px solid nth($purple, 1);
   border-radius: 10px;
   position: absolute;
   top: 50%;
@@ -18,18 +19,53 @@
   }
   .weatherContent {
     @include flex($a: center);
+    text-align: center;
     .weatherCommon {
-      text-align: center;
-      flex-basis: 33.33%;
       height: 6.25em;
+      h3 {
+        margin-bottom: 1em;
+      }
     }
   }
 
   .temperatureAndWeather {
+    flex-basis: 50%;
     .icon {
+      margin-top: 0.5em;
       width: 3.125em;
       height: 3.125em;
-      margin-top: 1em;
+    }
+  }
+
+  .fashion {
+    flex-basis: 25%;
+    p {
+      font-size: 0.8em;
+    }
+    .clothesImg {
+      width: 3.125em;
+      height: 3.125em;
+    }
+  }
+
+  .dust {
+    flex-basis: 25%;
+    .dustContent {
+      &.firstContent {
+        margin-top: 1.75em;
+      }
+      margin-bottom: 1em;
+      @include flex($a: center);
+      p {
+        display: inline-block;
+        font-size: 0.8em;
+      }
+      .circle {
+        display: inline-block;
+        width: 0.4375em;
+        height: 0.4375em;
+        border-radius: 50%;
+      }
     }
   }
 }

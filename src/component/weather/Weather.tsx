@@ -22,18 +22,19 @@ const Weather = () => {
       navigator.geolocation.getCurrentPosition((pos) => {
         const 위도 = pos.coords.latitude;
         const 경도 = pos.coords.longitude;
-        날씨불러오기(위도, 경도);
+        기상정보불러오기(위도, 경도);
       });
     } catch (error) {
       console.log(error);
     }
   }
 
-  async function 날씨불러오기(위도: number, 경도: number) {
+  async function 기상정보불러오기(위도: number, 경도: number) {
     try {
       const response = await axios.get("http://localhost:8000", {
         params: { 위도, 경도 },
       });
+      const 미세먼지정보 = response.data.dust.data;
       const 날씨정보 = response.data.weather.data;
       let 하늘상태, 강수형태;
       for (const data of 날씨정보) {
