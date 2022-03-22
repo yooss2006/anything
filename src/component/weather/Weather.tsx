@@ -35,6 +35,7 @@ const Weather = () => {
         params: { 위도, 경도 },
       });
       const 미세먼지정보 = response.data.dust.data;
+      console.log(미세먼지정보);
       const 날씨정보 = response.data.weather.data;
       let 하늘상태, 강수형태;
       for (const data of 날씨정보) {
