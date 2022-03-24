@@ -1,22 +1,19 @@
-import React from "react";
-
 import { whatWeather } from "./weatherFunc.js";
 
-type TAWprops = {
+type TWHprops = {
   weatherInformation: {
-    하늘상태: string;
-    강수형태: string;
+    temperature: number;
+    weatherCode: number;
+    humidity: number;
   };
 };
 
-const TemperatureAndWeather = ({ weatherInformation }: TAWprops) => {
-  const information = weatherInformation;
-  const { 하늘상태, 강수형태 } = information;
-
+const TemperatureAndWeather = ({ weatherInformation }: TWHprops) => {
+  const weatherCode = weatherInformation.weatherCode;
   return (
     <article className="weatherCommon temperatureAndWeather">
       <h3>오늘의 날씨</h3>
-      {whatWeather(하늘상태, 강수형태)}
+      {whatWeather(weatherCode)}
     </article>
   );
 };
