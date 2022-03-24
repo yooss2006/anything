@@ -1,67 +1,58 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-import Dust from "./Dust";
 import TemperatureAndWeather from "./TemperatureAndWeather";
 import Fashion from "./Fashion";
+import Humidity from "./Humidity";
+
+import { weatherAPIKEY } from "../../config.js";
 
 const Weather = () => {
   const [isLoding, setIsLoding] = useState(false);
-  const [temperature, setTemperature] = useState("");
+  const [map, setMap] = useState([37.301368, 127.9234433]);
   const [weatherInformation, setWeatherInformation] = useState({
-    하늘상태: "",
-    강수형태: "",
+    temperature: 0,
+    weatherCode: 0,
+    humidity: 0,
   });
 
   useEffect(() => {
-    위도경도전송();
+    letLng();
+    weatherInformationLoding();
+    타이머();
   }, []);
 
-  async function 위도경도전송() {
+  function letLng() {
     try {
       navigator.geolocation.getCurrentPosition((pos) => {
-        const 위도 = pos.coords.latitude;
-        const 경도 = pos.coords.longitude;
-        기상정보불러오기(위도, 경도);
+        const lat = pos.coords.latitude;
+        const lng = pos.coords.longitude;
+        setMap([lat, lng]);
       });
     } catch (error) {
       console.log(error);
     }
   }
 
-  async function 기상정보불러오기(위도: number, 경도: number) {
+  async function weatherInformationLoding() {
     try {
-      const response = await axios.get("http://localhost:8000", {
-        params: { 위도, 경도 },
-      });
-      const 미세먼지정보 = response.data.dust.data;
-      console.log(미세먼지정보);
-      const 날씨정보 = response.data.weather.data;
-      let 하늘상태, 강수형태;
-      for (const data of 날씨정보) {
-        switch (data.category) {
-          case "TMP":
-            setTemperature(data.fcstValue);
-            break;
-
-          case "SKY":
-            하늘상태 = data.fcstValue;
-            break;
-
-          case "PTY":
-            강수형태 = data.fcstValue;
-            break;
-
-          default:
-            console.log("에러");
-            break;
-        }
-      }
-      setWeatherInformation({ 하늘상태, 강수형태 });
+      const response = await axios.get(
+        `https://api.openweathermap.org/data/2.5/weather?lat=${map[0]}&lon=${map[1]}&appid=${weatherAPIKEY}`
+      );
+      const weatherObject = {
+        temperature: response.data.main.temp - 273.15,
+        weatherCode: response.data.weather[0].id,
+        humidity: response.data.main.humidity,
+      };
+      setWeatherInformation(weatherObject);
       setIsLoding(true);
     } catch (error) {
       console.log(error);
     }
+  }
+
+  function 타이머() {
+    setInterval(weatherInformationLoding, 3600000);
   }
 
   return (
@@ -69,9 +60,9 @@ const Weather = () => {
       <h2>today's weather</h2>
       {isLoding ? (
         <div className="weatherContent">
-          <Fashion temperature={temperature} />
+          <Fashion weatherInformation={weatherInformation} />
           <TemperatureAndWeather weatherInformation={weatherInformation} />
-          <Dust />
+          <Humidity weatherInformation={weatherInformation} />
         </div>
       ) : (
         <p>로딩중입니다...</p>

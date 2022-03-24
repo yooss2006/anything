@@ -2,8 +2,10 @@ import {
   BsFillCloudFill,
   BsFillCloudSnowFill,
   BsFillCloudRainHeavyFill,
+  BsFillCloudLightningRainFill,
 } from "react-icons/bs";
 import { IoMdSunny } from "react-icons/io";
+import { RiMistFill } from "react-icons/ri";
 
 import clothes1 from "../../assets/clothes1.png";
 import clothes2 from "../../assets/clothes2.png";
@@ -13,25 +15,20 @@ import clothes5 from "../../assets/clothes5.png";
 import clothes6 from "../../assets/clothes6.png";
 import clothes7 from "../../assets/clothes7.png";
 
-export function whatWeather(하늘상태, 강수형태) {
-  let weatherIcon;
-  switch (강수형태) {
-    case "0":
-      weatherIcon =
-        하늘상태 === "1" ? (
-          <IoMdSunny className="icon" />
-        ) : (
-          <BsFillCloudFill className="icon" />
-        );
-      break;
-    case "3":
-      weatherIcon = <BsFillCloudSnowFill className="icon" />;
-      break;
-    default:
-      weatherIcon = <BsFillCloudRainHeavyFill className="icon" />;
-      break;
+export function whatWeather(weatherCode) {
+  if (weatherCode >= 200 && weatherCode <= 232) {
+    return <BsFillCloudLightningRainFill className="icon" />;
+  } else if (weatherCode >= 300 && weatherCode <= 531) {
+    return <BsFillCloudRainHeavyFill className="icon" />;
+  } else if (weatherCode >= 600 && weatherCode <= 622) {
+    return <BsFillCloudSnowFill className="icon" />;
+  } else if (weatherCode >= 801 && weatherCode <= 804) {
+    return <BsFillCloudFill className="icon" />;
+  } else if (weatherCode == 800) {
+    return <IoMdSunny className="icon" />;
+  } else {
+    return <RiMistFill className="icon" />;
   }
-  return weatherIcon;
 }
 
 export function clothesSelect(temperature) {
