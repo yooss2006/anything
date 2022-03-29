@@ -15,7 +15,7 @@ import clothes5 from "../../assets/clothes5.png";
 import clothes6 from "../../assets/clothes6.png";
 import clothes7 from "../../assets/clothes7.png";
 
-export function whatWeather(weatherCode) {
+export function whatWeatherImg(weatherCode) {
   if (weatherCode >= 200 && weatherCode <= 232) {
     return <BsFillCloudLightningRainFill className="icon" />;
   } else if (weatherCode >= 300 && weatherCode <= 531) {
@@ -28,6 +28,22 @@ export function whatWeather(weatherCode) {
     return <IoMdSunny className="icon" />;
   } else {
     return <RiMistFill className="icon" />;
+  }
+}
+
+export function whatWeather(weatherCode) {
+  if (weatherCode >= 200 && weatherCode <= 232) {
+    return "Litening";
+  } else if (weatherCode >= 300 && weatherCode <= 531) {
+    return "rain";
+  } else if (weatherCode >= 600 && weatherCode <= 622) {
+    return "snow";
+  } else if (weatherCode >= 801 && weatherCode <= 804) {
+    return "cloud";
+  } else if (weatherCode == 800) {
+    return "sunny";
+  } else {
+    return "cloud";
   }
 }
 

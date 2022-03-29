@@ -1,5 +1,5 @@
 .weather {
-  width: 22%;
+  width: 27%;
   min-width: 250px;
   padding: 1em;
   border: 3px solid nth($purple, 1);
@@ -8,6 +8,7 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  box-sizing: border-box;
   background-color: nth($yellow, 2);
   text-align: center;
   color: nth($purple, 1);
@@ -88,6 +89,56 @@
         border: 2px solid nth($purple, 2);
         div {
           background-color: nth($purple, 2);
+        }
+      }
+    }
+  }
+
+  &.small {
+    width: 15%;
+    min-width: 100px;
+    padding: 0.5em;
+    border: 3px solid nth($purple, 1);
+    .weatherContent {
+      .weatherCommon {
+        height: 3em;
+      }
+    }
+    p {
+      font-family: $f7;
+      font-size: 0.7em;
+    }
+
+    .temperatureAndWeather {
+      flex-basis: 33.33%;
+      @include flex($a: center, $j: center);
+      margin: 0 5px;
+      .icon {
+        margin-top: 0;
+        width: 2.125em;
+        height: 2.125em;
+      }
+    }
+
+    .fashion {
+      flex-basis: 33.33%;
+      @include flex($a: center, $j: center);
+      p {
+        margin-top: 0;
+      }
+      .clothesImg {
+        width: 3.125em;
+        height: 3.125em;
+      }
+    }
+
+    .humidity {
+      flex-basis: 33.33%;
+      @include flex($a: center, $j: center);
+      p {
+        margin-top: 0;
+        strong {
+          display: inline-block;
         }
       }
     }

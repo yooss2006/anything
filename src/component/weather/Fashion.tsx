@@ -1,4 +1,3 @@
-import React from "react";
 import { clothesSelect } from "./weatherFunc";
 
 type TWHprops = {
@@ -7,14 +6,22 @@ type TWHprops = {
     weatherCode: number;
     humidity: number;
   };
+  isSmallMode: boolean;
 };
 
-const Fashion = ({ weatherInformation }: TWHprops) => {
+const Fashion = ({ weatherInformation, isSmallMode }: TWHprops) => {
   const temperature = weatherInformation.temperature;
   return (
     <article className="weatherCommon fashion">
-      <h3>fashion</h3>
-      <img src={clothesSelect(temperature)} className="clothesImg" />
+      {isSmallMode ? null : (
+        <>
+          <h3>fashion</h3>
+          <img
+            src={clothesSelect(Math.ceil(temperature))}
+            className="clothesImg"
+          />
+        </>
+      )}
       <p>
         <strong>{Math.ceil(temperature)}</strong>°C
       </p>
