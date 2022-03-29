@@ -15,6 +15,7 @@ const Weather = () => {
     weatherCode: 0,
     humidity: 0,
   });
+  const [isSmallMode, setIsSmallMode] = useState(false);
 
   useEffect(() => {
     letLng();
@@ -36,6 +37,7 @@ const Weather = () => {
 
   async function weatherInformationLoding() {
     try {
+      console.log("로딩");
       const response = await axios.get(
         `https://api.openweathermap.org/data/2.5/weather?lat=${map[0]}&lon=${map[1]}&appid=${weatherAPIKEY}`
       );
@@ -56,13 +58,27 @@ const Weather = () => {
   }
 
   return (
-    <section className="weather">
-      <h2>today's weather</h2>
+    <section
+      className={isSmallMode ? "weather small" : "weather"}
+      onClick={() => {
+        setIsSmallMode(!isSmallMode);
+      }}
+    >
+      {isSmallMode ? null : <h2>today's weather</h2>}
       {isLoding ? (
         <div className="weatherContent">
-          <Fashion weatherInformation={weatherInformation} />
-          <TemperatureAndWeather weatherInformation={weatherInformation} />
-          <Humidity weatherInformation={weatherInformation} />
+          <Fashion
+            weatherInformation={weatherInformation}
+            isSmallMode={isSmallMode}
+          />
+          <TemperatureAndWeather
+            weatherInformation={weatherInformation}
+            isSmallMode={isSmallMode}
+          />
+          <Humidity
+            weatherInformation={weatherInformation}
+            isSmallMode={isSmallMode}
+          />
         </div>
       ) : (
         <p>로딩중입니다...</p>

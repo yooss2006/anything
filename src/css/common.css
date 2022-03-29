@@ -136,7 +136,7 @@ q:after {
 }
 
 .weather {
-  width: 22%;
+  width: 27%;
   min-width: 250px;
   padding: 1em;
   border: 3px solid #460373;
@@ -145,6 +145,7 @@ q:after {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  box-sizing: border-box;
   background-color: #f2e6d8;
   text-align: center;
   color: #460373;
@@ -227,6 +228,59 @@ q:after {
 }
 .weather .humidity:hover .hygrometer div {
   background-color: #8149a6;
+}
+.weather.small {
+  width: 15%;
+  min-width: 100px;
+  padding: 0.5em;
+  border: 3px solid #460373;
+}
+.weather.small .weatherContent .weatherCommon {
+  height: 3em;
+}
+.weather.small p {
+  font-family: "SBAggroB";
+  font-size: 0.7em;
+}
+.weather.small .temperatureAndWeather {
+  flex-basis: 33.33%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: nowrap;
+  margin: 0 5px;
+}
+.weather.small .temperatureAndWeather .icon {
+  margin-top: 0;
+  width: 2.125em;
+  height: 2.125em;
+}
+.weather.small .fashion {
+  flex-basis: 33.33%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: nowrap;
+}
+.weather.small .fashion p {
+  margin-top: 0;
+}
+.weather.small .fashion .clothesImg {
+  width: 3.125em;
+  height: 3.125em;
+}
+.weather.small .humidity {
+  flex-basis: 33.33%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: nowrap;
+}
+.weather.small .humidity p {
+  margin-top: 0;
+}
+.weather.small .humidity p strong {
+  display: inline-block;
 }
 
 /*# sourceMappingURL=common.css.map */

@@ -1,4 +1,3 @@
-import React from "react";
 import styled from "styled-components";
 
 type TWHprops = {
@@ -7,6 +6,7 @@ type TWHprops = {
     weatherCode: number;
     humidity: number;
   };
+  isSmallMode: boolean;
 };
 
 interface Height {
@@ -17,14 +17,18 @@ const Box = styled.div`
   height: calc(${(props: Height) => props.height} - 1px);
 `;
 
-const Humidity = ({ weatherInformation }: TWHprops) => {
+const Humidity = ({ weatherInformation, isSmallMode }: TWHprops) => {
   const humidity = weatherInformation.humidity;
   return (
     <article className="weatherCommon humidity">
-      <h3>습도</h3>
-      <div className="hygrometer">
-        <Box height={humidity + "%"} />
-      </div>
+      {isSmallMode ? null : (
+        <>
+          <h3>습도</h3>
+          <div className="hygrometer">
+            <Box height={humidity + "%"} />
+          </div>
+        </>
+      )}
       <p>
         <strong>{humidity}</strong>%
       </p>
