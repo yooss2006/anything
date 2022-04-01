@@ -139,15 +139,15 @@ q:after {
   width: 27%;
   min-width: 250px;
   padding: 1em;
-  border: 3px solid #460373;
   border-radius: 10px;
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   box-sizing: border-box;
-  background-color: #f2e6d8;
   text-align: center;
+  border: 3px solid #460373;
+  background-color: #f2e6d8;
   color: #460373;
   box-shadow: 4px 4px 2px 2px #b796d9;
 }
@@ -281,6 +281,82 @@ q:after {
 }
 .weather.small .humidity p strong {
   display: inline-block;
+}
+
+.pomodoro {
+  width: 27%;
+  min-width: 250px;
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translate(-50%);
+  padding: 1em;
+  box-sizing: border-box;
+  text-align: center;
+  border-radius: 10px;
+  color: #460373;
+  border: 3px solid #460373;
+  background-color: #f2e6d8;
+  box-shadow: 4px 4px 2px 2px #b796d9;
+}
+.pomodoro h2 {
+  font-family: "SBAggroB";
+  font-size: 20px;
+  margin-bottom: 1em;
+}
+.pomodoro .contTimer {
+  width: 80%;
+  height: 3em;
+  margin: 0 auto;
+  overflow: hidden;
+}
+.pomodoro .contTimer .timer {
+  width: 100%;
+  position: relative;
+  background-color: #460373;
+  border-radius: 50%;
+  overflow: hidden;
+}
+.pomodoro .contTimer .timer::after {
+  content: "";
+  display: block;
+  padding-bottom: 100%;
+}
+.pomodoro .contTimer .gauge {
+  width: 86%;
+  height: 50%;
+  position: absolute;
+  top: 0;
+  left: -78%;
+  background-color: #b796d9;
+}
+.pomodoro .contTimer .circle {
+  width: 80%;
+  position: absolute;
+  top: 7%;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #f2e6d8;
+  border-radius: 50%;
+}
+.pomodoro .contTimer .circle::after {
+  content: "";
+  display: block;
+  padding-bottom: 100%;
+}
+.pomodoro .contTimer p {
+  position: absolute;
+  top: 2em;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #460373;
+}
+.pomodoro .playBtn {
+  margin-top: 1em;
+}
+.pomodoro .playBtn svg {
+  width: 2em;
+  height: 2em;
 }
 
 /*# sourceMappingURL=common.css.map */

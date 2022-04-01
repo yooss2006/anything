@@ -1,0 +1,78 @@
+.pomodoro {
+  width: 27%;
+  min-width: 250px;
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translate(-50%);
+  padding: 1em;
+  box-sizing: border-box;
+  text-align: center;
+  border-radius: 10px;
+  color: nth($purple, 1);
+  border: 3px solid nth($purple, 1);
+  background-color: nth($yellow, 2);
+  box-shadow: 4px 4px 2px 2px #b796d9;
+
+  h2 {
+    font-family: $f7;
+    font-size: 20px;
+    margin-bottom: 1em;
+  }
+  .contTimer {
+    width: 80%;
+    height: 3em;
+    margin: 0 auto;
+    overflow: hidden;
+    .timer {
+      width: 100%;
+      position: relative;
+      background-color: nth($purple, 1);
+      border-radius: 50%;
+      overflow: hidden;
+      &::after {
+        content: "";
+        display: block;
+        padding-bottom: 100%;
+      }
+    }
+    .gauge {
+      width: 86%;
+      height: 50%;
+      position: absolute;
+      top: 0;
+      left: -78%;
+      background-color: nth($purple, 3);
+    }
+
+    .circle {
+      width: 80%;
+      position: absolute;
+      top: 7%;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: nth($yellow, 2);
+      border-radius: 50%;
+
+      &::after {
+        content: "";
+        display: block;
+        padding-bottom: 100%;
+      }
+    }
+    p {
+      position: absolute;
+      top: 2em;
+      left: 50%;
+      transform: translateX(-50%);
+      color: nth($purple, 1);
+    }
+  }
+  .playBtn {
+    margin-top: 1em;
+    svg {
+      width: 2em;
+      height: 2em;
+    }
+  }
+}
