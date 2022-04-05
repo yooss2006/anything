@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import TimerCircle from "../weather/TimerCircle";
 
 type TimeProps = {
@@ -7,13 +7,13 @@ type TimeProps = {
 
 const Timer = ({ time }: TimeProps) => {
   const timeArr = time.split(":");
-  const x = Number(timeArr[0]) * 60 + Number(timeArr[1]);
+  const totalSec = Number(timeArr[0]) * 60 + Number(timeArr[1]);
 
   return (
     <div className="contTimer">
       <div className="timer">
         <div className="gauge"></div>
-        <TimerCircle totalSec={x} />
+        <TimerCircle totalSec={totalSec} />
         <div className="circle"></div>
         <p>{time}</p>
       </div>
