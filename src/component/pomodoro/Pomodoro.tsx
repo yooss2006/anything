@@ -2,7 +2,8 @@ import React, { useState, useEffect, useRef } from "react";
 import { BsFillPlayFill, BsStopFill } from "react-icons/bs";
 import Timer from "./Timer";
 const Pomodoro = () => {
-  const [studyMin, setStudyMin] = useState(25);
+  const [mode, setMode] = useState("study - time");
+  const [studyMin, setStudyMin] = useState(1);
   const [studySec, setStudySec] = useState(0);
   const [restMin, setRestMin] = useState(5);
   const [restSec, setRestSec] = useState(0);
@@ -10,37 +11,61 @@ const Pomodoro = () => {
   const [time, setTime] = useState("00:00");
 
   useEffect(() => {
+    let timer: NodeJS.Timer;
     if (isStudy) {
-      let timer = setInterval(() => {
-        if (studySec > 0) {
-          setStudySec((studySec) => studySec - 1);
-        }
-        if (studySec === 0) {
-          if (studyMin === 0) {
-            clearInterval(timer);
-          } else {
-            setStudyMin((studyMin) => studyMin - 1);
-            setStudySec((studySec) => 59);
-          }
-        }
-        setTime(timeFormatchange(studyMin, studySec));
-      }, 1000);
+      if (mode === "study - time")
+        timer = makeTimer(studyMin, studySec, setStudyMin, setStudySec);
+      else if (mode === "rest - time")
+        timer = makeTimer(restMin, restSec, setRestMin, setRestSec);
       return () => clearInterval(timer);
+    } else {
+      setTime(
+        mode === "study - time"
+          ? `${timeFormatchange(studyMin, studySec)}`
+          : `${timeFormatchange(restMin, restSec)}`
+      );
     }
   }, [studyMin, studySec, time, isStudy]);
 
+  function makeTimer(
+    min: number,
+    sec: number,
+    setMin: React.Dispatch<React.SetStateAction<number>>,
+    setSec: React.Dispatch<React.SetStateAction<number>>
+  ) {
+    let timer = setInterval(() => {
+      if (sec > 0) {
+        setSec((sec) => sec - 1);
+      }
+      if (sec === 0) {
+        if (min === 0) {
+          setMode(mode === "study - time" ? "rest - time" : "study - time");
+          setStudyMin(25);
+          setRestMin(5);
+          clearInterval(timer);
+          setIsStudy(false);
+        } else {
+          setMin((min) => min - 1);
+          setSec((sec) => 59);
+        }
+      }
+      setTime(timeFormatchange(min, sec));
+    }, 1000);
+    return timer;
+  }
+
   function timeFormatchange(
-    studyMin: number | string,
-    studySec: number | string
+    min: number | string,
+    sec: number | string
   ): string {
-    studyMin = studyMin < 10 ? "0" + String(studyMin) : String(studyMin);
-    studySec = studySec < 10 ? "0" + String(studySec) : String(studySec);
-    return studyMin + " : " + studySec;
+    min = min < 10 ? "0" + String(min) : String(min);
+    sec = sec < 10 ? "0" + String(sec) : String(sec);
+    return min + " : " + sec;
   }
 
   return (
     <section className="pomodoro">
-      <h2>Pomodoro Timer</h2>
+      <h2>{mode}</h2>
       <Timer time={time} />
       <button className="playBtn" onClick={() => setIsStudy(!isStudy)}>
         {isStudy ? <BsStopFill /> : <BsFillPlayFill />}
